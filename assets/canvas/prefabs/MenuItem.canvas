@@ -1,0 +1,88 @@
+{
+  "canvas-version": 2,
+  "settings": {
+    "className": "MenuItem",
+    "sceneWidth": 640,
+    "sceneHeight": 360,
+    "generateOnSave": true,
+    "enableStepping": false,
+    "lang": "JAVA_SCRIPT_6",
+    "baseClass": "Phaser.Group",
+    "backgroundColor": [
+      180,
+      180,
+      180
+    ],
+    "gridColor": [
+      200,
+      200,
+      200
+    ],
+    "showGrid": true
+  },
+  "stateSettings": {
+    "stageBackgroundColor": [
+      0,
+      0,
+      0
+    ],
+    "autoLoad": true,
+    "preloadSpriteId": "",
+    "preloadSprite_direction": 0,
+    "load.pack": []
+  },
+  "world": {
+    "type": "group",
+    "id": "c36e9a5f-3c6c-4e0b-a321-cb5eb72a0cab",
+    "info": {
+      "editorName": "MenuItem",
+      "setAll": [],
+      "children": [{
+        "type": "group",
+        "id": "ecdcb273-5416-4f78-bbe5-34d8dfdc64e5",
+        "info": {
+          "editorName": "group",
+          "setAll": [],
+          "children": [
+            {
+              "type": "prefab",
+              "prefab": "0",
+              "id": "67484a8c-4f6b-403a-8467-0a51e08a78ff",
+              "asset-ref": {
+                "file": "WebContent/assets/pack.json",
+                "section": "preloader",
+                "asset": "coins",
+                "sprite": "1"
+              },
+              "info": {
+                "editorName": "background",
+                "editorPublic": true,
+                "x": -1,
+                "y": -1
+              }
+            },
+            {
+              "type": "text",
+              "id": "7a22aaed-aa57-419b-aefd-9a4ed75a65df",
+              "info": {
+                "editorName": "text",
+                "editorPublic": true,
+                "x": 91,
+                "y": 78,
+                "pivot.x": 33,
+                "pivot.y": 11,
+                "anchor.x": 0.5,
+                "anchor.y": 0.5,
+                "text": "Button",
+                "style.align": "CENTER"
+              }
+            }
+          ]
+        }
+      }]
+    }
+  },
+  "type": "GROUP",
+  "asset-table": {},
+  "prefab-table": {"0": "WebContent/assets/canvas/prefabs/button.canvas"}
+}

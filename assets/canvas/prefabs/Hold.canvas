@@ -1,0 +1,60 @@
+{
+  "canvas-version": 2,
+  "settings": {
+    "className": "Hold",
+    "sceneWidth": 640,
+    "sceneHeight": 360,
+    "generateOnSave": true,
+    "enableStepping": false,
+    "lang": "JAVA_SCRIPT_6",
+    "baseClass": "Phaser.Sprite",
+    "backgroundColor": [
+      180,
+      180,
+      180
+    ],
+    "gridColor": [
+      200,
+      200,
+      200
+    ],
+    "showGrid": true
+  },
+  "stateSettings": {
+    "stageBackgroundColor": [
+      0,
+      0,
+      0
+    ],
+    "autoLoad": true,
+    "preloadSpriteId": "",
+    "preloadSprite_direction": 0,
+    "load.pack": []
+  },
+  "world": {
+    "type": "group",
+    "id": "df35c676-6da7-4b54-9f1f-237c1b4676b0",
+    "info": {
+      "editorName": "root",
+      "setAll": [],
+      "children": [{
+        "type": "atlas-sprite",
+        "id": "dd8cea8b-0da3-4c86-a227-db007e568641",
+        "asset": "0",
+        "info": {
+          "editorName": "hold",
+          "editorPublic": true,
+          "scale.y": 2
+        }
+      }]
+    }
+  },
+  "type": "SPRITE",
+  "asset-table": {"0": {
+    "file": "WebContent/assets/pack.json",
+    "section": "preloader",
+    "asset": "environ",
+    "sprite": "bridge"
+  }},
+  "prefab-table": {}
+}

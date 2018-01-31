@@ -1,0 +1,103 @@
+{
+  "canvas-version": 2,
+  "settings": {
+    "className": "Ball",
+    "sceneWidth": 640,
+    "sceneHeight": 360,
+    "generateOnSave": true,
+    "enableStepping": false,
+    "lang": "JAVA_SCRIPT_6",
+    "baseClass": "Phaser.Sprite",
+    "backgroundColor": [
+      180,
+      180,
+      180
+    ],
+    "gridColor": [
+      200,
+      200,
+      200
+    ],
+    "showGrid": true,
+    "create_after": "this.fBall.smoothed = false;"
+  },
+  "stateSettings": {
+    "stageBackgroundColor": [
+      0,
+      0,
+      0
+    ],
+    "autoLoad": true,
+    "preloadSpriteId": "",
+    "preloadSprite_direction": 0,
+    "load.pack": []
+  },
+  "world": {
+    "type": "group",
+    "id": "a6b6196f-4b45-4e98-9d95-ee3063665c3c",
+    "info": {
+      "editorName": "root",
+      "setAll": [],
+      "children": [{
+        "type": "spritesheet",
+        "id": "7c560780-30d9-49f0-9b54-63f78681596b",
+        "asset": "0",
+        "info": {
+          "editorName": "ball",
+          "editorPublic": true,
+          "scale.x": 2,
+          "scale.y": 2,
+          "anchor.x": 0.5,
+          "anchor.y": 0.5,
+          "animations": [
+            {
+              "name": "idle",
+              "frameRate": 8,
+              "loop": true,
+              "public": true,
+              "autoPlay": true,
+              "frames": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ]
+            },
+            {
+              "name": "walk",
+              "frameRate": 8,
+              "loop": true,
+              "public": true,
+              "frames": [
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9"
+              ]
+            },
+            {
+              "name": "hurt",
+              "frameRate": 8,
+              "public": true,
+              "frames": [
+                "14",
+                "15",
+                "16"
+              ]
+            }
+          ]
+        }
+      }]
+    }
+  },
+  "type": "SPRITE",
+  "asset-table": {"0": {
+    "file": "WebContent/assets/pack.json",
+    "section": "preloader",
+    "asset": "DinoSprites_blue",
+    "sprite": "0"
+  }},
+  "prefab-table": {}
+}

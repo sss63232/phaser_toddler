@@ -1,0 +1,162 @@
+{
+  "canvas-version": 2,
+  "settings": {
+    "className": "Slot",
+    "sceneWidth": 1280,
+    "sceneHeight": 1920,
+    "generateOnSave": true,
+    "enableStepping": false,
+    "lang": "JAVA_SCRIPT_6",
+    "baseClass": "Phaser.State",
+    "backgroundColor": [
+      180,
+      180,
+      180
+    ],
+    "gridColor": [
+      200,
+      200,
+      200
+    ],
+    "showGrid": true,
+    "create_after": "Facade.getInstance('Game').sendNotification('GAME_SCENE_CHANGED');"
+  },
+  "stateSettings": {
+    "scaleMode": "RESIZE",
+    "stageBackgroundColor": [
+      0,
+      0,
+      0
+    ],
+    "autoLoad": true,
+    "preloadSpriteId": "",
+    "preloadSprite_direction": 0,
+    "load.pack": []
+  },
+  "world": {
+    "type": "group",
+    "id": "ffe55e21-5c2e-4048-9774-0afb027ae822",
+    "info": {
+      "editorName": "slot",
+      "setAll": [],
+      "children": [
+        {
+          "type": "image",
+          "id": "37caee29-c143-49c3-9630-eadb1c0812f0",
+          "asset": "0",
+          "info": {
+            "editorName": "bg",
+            "x": -32,
+            "y": -181
+          }
+        },
+        {
+          "type": "prefab",
+          "prefab": "0",
+          "id": "8dbc2b09-41cd-4a75-9007-01af667a71d8",
+          "info": {
+            "editorName": "group",
+            "name": "reel0",
+            "x": 50,
+            "y": 30
+          }
+        },
+        {
+          "type": "prefab",
+          "prefab": "1",
+          "id": "a5f0c2a7-279f-4c64-8fac-2544e9cbe243",
+          "info": {
+            "editorName": "group1",
+            "name": "btnBack",
+            "x": -42,
+            "y": 148
+          }
+        },
+        {
+          "type": "prefab",
+          "prefab": "0",
+          "id": "bfbbd648-6b03-475f-bcef-c14d52e29adf",
+          "info": {
+            "editorName": "group2",
+            "name": "reel1",
+            "x": 227,
+            "y": 30
+          }
+        },
+        {
+          "type": "prefab",
+          "prefab": "0",
+          "id": "9c922468-98bf-48f2-809b-6b976799d351",
+          "info": {
+            "editorName": "group3",
+            "name": "reel2",
+            "x": 404,
+            "y": 30
+          }
+        },
+        {
+          "type": "prefab",
+          "prefab": "0",
+          "id": "2d9aae36-64d9-4ab9-8703-b8baac5aeedd",
+          "info": {
+            "editorName": "group4",
+            "name": "reel3",
+            "x": 581,
+            "y": 30
+          }
+        },
+        {
+          "type": "prefab",
+          "prefab": "0",
+          "id": "8a4c0223-d7b0-428c-b213-de7cbf07637c",
+          "info": {
+            "editorName": "group5",
+            "name": "reel4",
+            "x": 758,
+            "y": 30
+          }
+        },
+        {
+          "type": "prefab",
+          "prefab": "0",
+          "id": "2981b284-f586-4f49-96ef-df900b94c22f",
+          "info": {
+            "editorName": "group6",
+            "prefabOverride": [
+              "position",
+              "angle",
+              "pivot"
+            ],
+            "name": "reel5",
+            "x": -24,
+            "y": 459,
+            "rotation": 4.71238898038469,
+            "pivot.x": 175,
+            "pivot.y": 0
+          }
+        },
+        {
+          "type": "prefab",
+          "prefab": "1",
+          "id": "b71ab69d-963d-45d6-827d-e9ed5fa82358",
+          "info": {
+            "editorName": "group7",
+            "name": "btnDino",
+            "x": 303,
+            "y": -1
+          }
+        }
+      ]
+    }
+  },
+  "type": "STATE",
+  "asset-table": {"0": {
+    "file": "WebContent/assets/pack.json",
+    "section": "preloader",
+    "asset": "bg"
+  }},
+  "prefab-table": {
+    "0": "WebContent/assets/canvas/prefabs/Reel.canvas",
+    "1": "WebContent/assets/canvas/prefabs/MenuItem.canvas"
+  }
+}

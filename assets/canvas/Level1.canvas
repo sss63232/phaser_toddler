@@ -1,0 +1,277 @@
+{
+  "canvas-version": 2,
+  "settings": {
+    "className": "Level1",
+    "sceneWidth": 720,
+    "sceneHeight": 1280,
+    "generateOnSave": true,
+    "enableStepping": true,
+    "lang": "JAVA_SCRIPT_6",
+    "baseClass": "State",
+    "backgroundColor": [
+      180,
+      180,
+      180
+    ],
+    "gridColor": [
+      200,
+      200,
+      200
+    ],
+    "showGrid": true,
+    "create_after": "Facade.getInstance('Game').sendNotification('GAME_SCENE_CHANGED');"
+  },
+  "stateSettings": {
+    "stageBackgroundColor": [
+      0,
+      0,
+      0
+    ],
+    "autoLoad": false,
+    "preloadSpriteId": "",
+    "preloadSprite_direction": 0,
+    "load.pack": []
+  },
+  "world": {
+    "type": "group",
+    "id": "0dc890db-63f7-4599-97b7-aeb477367f12",
+    "info": {
+      "editorName": "Level1",
+      "setAll": [],
+      "children": [
+        {
+          "type": "image",
+          "id": "6e013955-7a1e-43f3-af25-8769c95626dd",
+          "asset": "0",
+          "info": {
+            "editorName": "bg",
+            "x": -512,
+            "y": -128,
+            "scale.x": 1.20498124135178,
+            "scale.y": 2.0816107472240977
+          }
+        },
+        {
+          "type": "atlas-sprite",
+          "id": "4b259cca-2d48-457c-9dd8-46c0f536b932",
+          "asset": "1",
+          "info": {
+            "editorName": "bridge",
+            "x": 7,
+            "y": 313
+          }
+        },
+        {
+          "type": "atlas-sprite",
+          "id": "d3285ae5-704d-4da2-be65-082403756c79",
+          "asset": "1",
+          "info": {
+            "editorName": "bridge1",
+            "x": 136,
+            "y": 312
+          }
+        },
+        {
+          "type": "atlas-sprite",
+          "id": "648ee133-6610-4cfc-a8b5-7dcabf98ec64",
+          "asset": "2",
+          "info": {
+            "editorName": "ground_",
+            "x": 257,
+            "y": 317
+          }
+        },
+        {
+          "type": "atlas-sprite",
+          "id": "ce2b7b62-8963-44d5-9939-c25be7ba8361",
+          "asset": "3",
+          "info": {
+            "editorName": "ground_1",
+            "x": 385,
+            "y": 318
+          }
+        },
+        {
+          "type": "atlas-sprite",
+          "id": "62541d8e-bbdd-486b-937d-51f5f4167c17",
+          "asset": "3",
+          "info": {
+            "editorName": "ground_2",
+            "x": 512,
+            "y": 318
+          }
+        },
+        {
+          "type": "atlas-sprite",
+          "id": "e1411fbb-1b8b-4459-a194-98bde3157618",
+          "asset": "3",
+          "info": {
+            "editorName": "ground_3",
+            "x": 640,
+            "y": 318
+          }
+        },
+        {
+          "type": "atlas-sprite",
+          "id": "6e5a07a0-befa-42fc-8aaa-a14aa8f713f3",
+          "asset": "4",
+          "info": {
+            "editorName": "star",
+            "x": 195,
+            "y": 72
+          }
+        },
+        {
+          "type": "atlas-sprite",
+          "id": "1779974e-015b-4460-a4c5-7255076d80cc",
+          "asset": "4",
+          "info": {
+            "editorName": "star1",
+            "editorPublic": true,
+            "x": 309,
+            "y": 73
+          }
+        },
+        {
+          "type": "atlas-sprite",
+          "id": "07e193b3-5475-4bd2-a4cf-6e3c4a2948a5",
+          "asset": "4",
+          "info": {
+            "editorName": "star2",
+            "x": 424,
+            "y": 73
+          }
+        },
+        {
+          "type": "prefab",
+          "prefab": "0",
+          "id": "01f7b03f-04c4-4fe8-8327-8ada1407ae23",
+          "asset-ref": {
+            "file": "WebContent/assets/pack.json",
+            "section": "preloader",
+            "asset": "dino",
+            "sprite": "1"
+          },
+          "info": {
+            "editorName": "dino",
+            "editorPublic": true,
+            "x": -4,
+            "y": 117
+          }
+        },
+        {
+          "type": "prefab",
+          "prefab": "1",
+          "id": "d011ef27-b15e-4a0e-80e1-31307a55bbfa",
+          "asset-ref": {
+            "file": "WebContent/assets/pack.json",
+            "section": "preloader",
+            "asset": "coins",
+            "sprite": "1"
+          },
+          "info": {
+            "editorName": "coins",
+            "editorPublic": true,
+            "x": 251,
+            "y": 136
+          }
+        },
+        {
+          "type": "group",
+          "id": "37d9ef61-06fc-488e-81db-7893eccfe575",
+          "info": {
+            "editorName": "player1",
+            "editorPublic": true,
+            "scale.x": 0.46543780121428296,
+            "scale.y": 0.4932431806571066,
+            "setAll": [],
+            "children": [
+              {
+                "type": "atlas-sprite",
+                "id": "c96103be-721f-4a14-a639-33cdd718d633",
+                "asset": "5",
+                "info": {
+                  "editorName": "card0_jpg",
+                  "x": 37,
+                  "y": 65
+                }
+              },
+              {
+                "type": "atlas-sprite",
+                "id": "9c137de7-ea08-4a74-9940-82976d768718",
+                "asset": "6",
+                "info": {
+                  "editorName": "card1_jpg",
+                  "x": 154,
+                  "y": 62
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "group",
+          "id": "756db776-a066-4167-a6fb-edd752b53f36",
+          "info": {
+            "editorName": "player2",
+            "editorPublic": true,
+            "x": 524,
+            "y": 5,
+            "scale.x": 0.46543780121428296,
+            "scale.y": 0.4932431806571066,
+            "setAll": [],
+            "children": []
+          }
+        }
+      ]
+    }
+  },
+  "type": "STATE",
+  "asset-table": {
+    "0": {
+      "file": "WebContent/assets/pack.json",
+      "section": "preloader",
+      "asset": "bg"
+    },
+    "1": {
+      "file": "WebContent/assets/pack.json",
+      "section": "preloader",
+      "asset": "environ",
+      "sprite": "bridge"
+    },
+    "2": {
+      "file": "WebContent/assets/pack.json",
+      "section": "preloader",
+      "asset": "environ",
+      "sprite": "ground-0"
+    },
+    "3": {
+      "file": "WebContent/assets/pack.json",
+      "section": "preloader",
+      "asset": "environ",
+      "sprite": "ground-1"
+    },
+    "4": {
+      "file": "WebContent/assets/pack.json",
+      "section": "preloader",
+      "asset": "environ",
+      "sprite": "star"
+    },
+    "5": {
+      "file": "WebContent/assets/pack.json",
+      "section": "preloader",
+      "asset": "poker",
+      "sprite": "card0.jpg"
+    },
+    "6": {
+      "file": "WebContent/assets/pack.json",
+      "section": "preloader",
+      "asset": "poker",
+      "sprite": "card1.jpg"
+    }
+  },
+  "prefab-table": {
+    "0": "WebContent/assets/canvas/prefabs/Dino.canvas",
+    "1": "WebContent/assets/canvas/prefabs/button.canvas"
+  }
+}

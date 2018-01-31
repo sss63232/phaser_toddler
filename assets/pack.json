@@ -1,0 +1,188 @@
+{
+  "boot": [{
+    "type": "image",
+    "key": "logo",
+    "url": "assets/images/logo.png",
+    "overwrite": false
+  }],
+  "preloader": [
+    {
+      "type": "atlas",
+      "key": "environ",
+      "textureURL": "assets/atlas/textures.png",
+      "atlasURL": "assets/atlas/textures.json",
+      "format": "TEXTURE_ATLAS_JSON_HASH"
+    },
+    {
+      "type": "spritesheet",
+      "key": "coins",
+      "url": "assets/sprites/coins.png",
+      "frameWidth": 128,
+      "frameHeight": 128,
+      "frameMax": -1,
+      "margin": 0,
+      "spacing": 0
+    },
+    {
+      "type": "spritesheet",
+      "key": "dino",
+      "url": "assets/sprites/dino.png",
+      "frameWidth": 210,
+      "frameHeight": 210,
+      "frameMax": -1,
+      "margin": 0,
+      "spacing": 0
+    },
+    {
+      "type": "image",
+      "key": "bg",
+      "url": "assets/images/bg.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "play",
+      "url": "assets/images/play.png",
+      "overwrite": false
+    },
+    {
+      "type": "atlas",
+      "key": "poker",
+      "textureURL": "assets/atlas/sprites.png",
+      "atlasURL": "assets/atlas/sprites.json",
+      "format": "TEXTURE_ATLAS_JSON_HASH"
+    },
+    {
+      "type": "atlas",
+      "key": "basegameSymbol",
+      "textureURL": "assets/atlas/basegameSymbol.png",
+      "atlasURL": "assets/atlas/basegameSymbol.json",
+      "format": "TEXTURE_ATLAS_JSON_HASH"
+    },
+    {
+      "type": "atlas",
+      "key": "freegameSymbol",
+      "textureURL": "assets/atlas/freegameSymbol.png",
+      "atlasURL": "assets/atlas/freegameSymbol.json",
+      "format": "TEXTURE_ATLAS_JSON_HASH"
+    },
+    {
+      "type": "spritesheet",
+      "key": "hearts",
+      "url": "assets/sprites/hearts.png",
+      "frameWidth": 265,
+      "frameHeight": 229,
+      "frameMax": -1,
+      "margin": 0,
+      "spacing": 0
+    },
+    {
+      "type": "atlas",
+      "key": "breakout",
+      "textureURL": "assets/atlas/breakout.png",
+      "atlasURL": "assets/atlas/breakout.json",
+      "format": "TEXTURE_ATLAS_JSON_ARRAY"
+    },
+    {
+      "type": "image",
+      "key": "starfield",
+      "url": "assets/images/starfield.jpg",
+      "overwrite": false
+    },
+    {
+      "type": "spritesheet",
+      "key": "DinoSprites_blue",
+      "url": "assets/sprites/DinoSprites - doux.png",
+      "frameWidth": 24,
+      "frameHeight": 24,
+      "frameMax": -1,
+      "margin": 0,
+      "spacing": 0
+    },
+    {
+      "type": "spritesheet",
+      "key": "DinoSprites_red",
+      "url": "assets/sprites/DinoSprites - mort.png",
+      "frameWidth": 24,
+      "frameHeight": 24,
+      "frameMax": -1,
+      "margin": 0,
+      "spacing": 0
+    },
+    {
+      "type": "spritesheet",
+      "key": "DinoSprites_yellow",
+      "url": "assets/sprites/DinoSprites - tard.png",
+      "frameWidth": 24,
+      "frameHeight": 24,
+      "frameMax": -1,
+      "margin": 0,
+      "spacing": 0
+    },
+    {
+      "type": "spritesheet",
+      "key": "DinoSprites_green",
+      "url": "assets/sprites/DinoSprites - vita.png",
+      "frameWidth": 24,
+      "frameHeight": 24,
+      "frameMax": -1,
+      "margin": 0,
+      "spacing": 0
+    },
+    {
+      "type": "atlas",
+      "key": "paddle",
+      "textureURL": "assets/atlas/paddle.png",
+      "atlasURL": "assets/atlas/paddle.json",
+      "format": "TEXTURE_ATLAS_JSON_HASH"
+    },
+    {
+      "type": "image",
+      "key": "back",
+      "url": "assets/images/back.png",
+      "overwrite": false
+    },
+    {
+      "type": "audiosprite",
+      "key": "sound",
+      "urls": [
+        "assets/audio/sound.ogg",
+        "assets/audio/sound.m4a",
+        "assets/audio/sound.mp3",
+        "assets/audio/sound.ac3"
+      ],
+      "autoDecode": true,
+      "jsonURL": "assets/audio/sound.json"
+    },
+    {
+      "type": "image",
+      "key": "restart",
+      "url": "assets/images/restart.png",
+      "overwrite": false
+    },
+    {
+      "type": "spritesheet",
+      "key": "RandomObj",
+      "url": "assets/sprites/RandomObj.png",
+      "frameWidth": 26,
+      "frameHeight": 26,
+      "frameMax": -1,
+      "margin": 0,
+      "spacing": 0
+    },
+    {
+      "type": "atlas",
+      "key": "audio",
+      "textureURL": "assets/atlas/audio.png",
+      "atlasURL": "assets/atlas/audio.json",
+      "format": "TEXTURE_ATLAS_JSON_HASH"
+    }
+  ],
+  "meta": {
+    "generated": "1517215430376",
+    "app": "Phaser Editor",
+    "url": "http://phasereditor.boniatillo.com",
+    "version": "1.0",
+    "copyright": "Arian Fornaris (c) 2015,2016"
+  }
+}

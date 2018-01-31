@@ -1,0 +1,55 @@
+{
+  "canvas-version": 2,
+  "settings": {
+    "className": "Preloader",
+    "sceneWidth": 325,
+    "sceneHeight": 461,
+    "generateOnSave": true,
+    "enableStepping": false,
+    "lang": "JAVA_SCRIPT_6",
+    "baseClass": "Phaser.State",
+    "backgroundColor": [
+      180,
+      180,
+      180
+    ],
+    "gridColor": [
+      200,
+      200,
+      200
+    ],
+    "showGrid": true,
+    "create_before": "this.preloadGameAudio();"
+  },
+  "stateSettings": {
+    "scaleMode": "SHOW_ALL",
+    "pageAlignHorizontally": true,
+    "pageAlignVertically": true,
+    "stageBackgroundColor": [
+      0,
+      0,
+      0
+    ],
+    "rendererRoundPixels": true,
+    "autoLoad": false,
+    "isPreloader": true,
+    "preloadSpriteId": "c3b440d3-570c-4cfe-8581-b45772293931",
+    "preloadSprite_direction": 0,
+    "load.pack": [{
+      "file": "WebContent/assets/pack.json",
+      "section": "preloader"
+    }]
+  },
+  "world": {
+    "type": "group",
+    "id": "16707e64-9031-498b-9e49-0be2635d79ae",
+    "info": {
+      "editorName": "Preload",
+      "setAll": [],
+      "children": []
+    }
+  },
+  "type": "STATE",
+  "asset-table": {},
+  "prefab-table": {}
+}

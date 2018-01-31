@@ -1,0 +1,128 @@
+{
+  "canvas-version": 2,
+  "settings": {
+    "className": "BallTool",
+    "sceneWidth": 640,
+    "sceneHeight": 360,
+    "generateOnSave": true,
+    "enableStepping": false,
+    "lang": "JAVA_SCRIPT_6",
+    "baseClass": "Phaser.Group",
+    "backgroundColor": [
+      180,
+      180,
+      180
+    ],
+    "gridColor": [
+      200,
+      200,
+      200
+    ],
+    "showGrid": true,
+    "create_after": "this.fDinoSprites_blue.smoothed = false;\r\nthis.fDinoSprites_red.smoothed = false;\r\nthis.fDinoSprites_yellow.smoothed = false;\r\nthis.fDinoSprites_green.smoothed = false;"
+  },
+  "stateSettings": {
+    "stageBackgroundColor": [
+      0,
+      0,
+      0
+    ],
+    "autoLoad": true,
+    "preloadSpriteId": "",
+    "preloadSprite_direction": 0,
+    "load.pack": []
+  },
+  "world": {
+    "type": "group",
+    "id": "0e850fc6-00f3-4f92-9ee1-1cf46c0d36e0",
+    "info": {
+      "editorName": "Tool",
+      "setAll": [],
+      "children": [{
+        "type": "group",
+        "id": "d3d3ddde-a172-4105-b4d1-969be3d67f38",
+        "info": {
+          "editorName": "group",
+          "setAll": [],
+          "children": [
+            {
+              "type": "spritesheet",
+              "id": "335886eb-cd10-4795-b177-3dd27c82ec04",
+              "asset": "0",
+              "info": {
+                "editorName": "DinoSprites_blue",
+                "editorPublic": true,
+                "scale.x": 1.5,
+                "scale.y": 1.5
+              }
+            },
+            {
+              "type": "spritesheet",
+              "id": "083911de-3044-4ca1-8f4b-46305ddccd92",
+              "asset": "1",
+              "info": {
+                "editorName": "DinoSprites_red",
+                "editorPublic": true,
+                "x": 36,
+                "scale.x": 1.5,
+                "scale.y": 1.5
+              }
+            },
+            {
+              "type": "spritesheet",
+              "id": "bcb61593-1dfb-4d7b-9b2f-128c3e90dd30",
+              "asset": "2",
+              "info": {
+                "editorName": "DinoSprites_yellow",
+                "editorPublic": true,
+                "x": 72,
+                "scale.x": 1.5,
+                "scale.y": 1.5
+              }
+            },
+            {
+              "type": "spritesheet",
+              "id": "adad6b98-b726-466e-bd1d-518514d5c7a0",
+              "asset": "3",
+              "info": {
+                "editorName": "DinoSprites_green",
+                "editorPublic": true,
+                "x": 108,
+                "scale.x": 1.5,
+                "scale.y": 1.5
+              }
+            }
+          ]
+        }
+      }]
+    }
+  },
+  "type": "GROUP",
+  "asset-table": {
+    "0": {
+      "file": "WebContent/assets/pack.json",
+      "section": "preloader",
+      "asset": "DinoSprites_blue",
+      "sprite": "0"
+    },
+    "1": {
+      "file": "WebContent/assets/pack.json",
+      "section": "preloader",
+      "asset": "DinoSprites_red",
+      "sprite": "0"
+    },
+    "2": {
+      "file": "WebContent/assets/pack.json",
+      "section": "preloader",
+      "asset": "DinoSprites_yellow",
+      "sprite": "0"
+    },
+    "3": {
+      "file": "WebContent/assets/pack.json",
+      "section": "preloader",
+      "asset": "DinoSprites_green",
+      "sprite": "0"
+    }
+  },
+  "prefab-table": {}
+}

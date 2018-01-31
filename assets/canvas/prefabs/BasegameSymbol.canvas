@@ -1,0 +1,55 @@
+{
+  "canvas-version": 2,
+  "settings": {
+    "className": "BasegameSymbol",
+    "sceneWidth": 640,
+    "sceneHeight": 360,
+    "generateOnSave": true,
+    "enableStepping": false,
+    "lang": "JAVA_SCRIPT_6",
+    "baseClass": "Phaser.Sprite",
+    "backgroundColor": [
+      180,
+      180,
+      180
+    ],
+    "gridColor": [
+      200,
+      200,
+      200
+    ],
+    "showGrid": true
+  },
+  "stateSettings": {
+    "stageBackgroundColor": [
+      0,
+      0,
+      0
+    ],
+    "autoLoad": true,
+    "preloadSprite_direction": 0,
+    "load.pack": []
+  },
+  "world": {
+    "type": "group",
+    "id": "c3985774-010f-4cfc-987e-b8cdcae1cfea",
+    "info": {
+      "editorName": "BasegameSymbol",
+      "setAll": [],
+      "children": [{
+        "type": "atlas-sprite",
+        "id": "ab6c325d-f68c-4da5-be22-92f23c4e76d3",
+        "asset": "0",
+        "info": {"editorName": "WW"}
+      }]
+    }
+  },
+  "type": "SPRITE",
+  "asset-table": {"0": {
+    "file": "WebContent/assets/pack.json",
+    "section": "preloader",
+    "asset": "basegameSymbol",
+    "sprite": "WW"
+  }},
+  "prefab-table": {}
+}

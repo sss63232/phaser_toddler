@@ -1,0 +1,114 @@
+{
+  "canvas-version": 2,
+  "settings": {
+    "className": "Paddle",
+    "sceneWidth": 325,
+    "sceneHeight": 461,
+    "generateOnSave": true,
+    "enableStepping": false,
+    "lang": "JAVA_SCRIPT_6",
+    "baseClass": "Phaser.Group",
+    "backgroundColor": [
+      180,
+      180,
+      180
+    ],
+    "gridColor": [
+      200,
+      200,
+      200
+    ],
+    "showGrid": true,
+    "create_after": "this.fPaddle_left.alignTo(this.fPaddle_middle, Phaser.LEFT_CENTER);\r\nthis.fPaddle_right.alignTo(this.fPaddle_middle, Phaser.RIGHT_CENTER);"
+  },
+  "stateSettings": {
+    "stageBackgroundColor": [
+      0,
+      0,
+      0
+    ],
+    "autoLoad": true,
+    "preloadSpriteId": "",
+    "preloadSprite_direction": 0,
+    "load.pack": []
+  },
+  "world": {
+    "type": "group",
+    "id": "7f8f414c-ca7f-4611-89d3-2532b1ce93f5",
+    "info": {
+      "editorName": "Paddles",
+      "setAll": [],
+      "children": [{
+        "type": "group",
+        "id": "9f108aba-f54b-422c-8586-ac4a521c4d53",
+        "info": {
+          "editorName": "paddle",
+          "x": 9,
+          "y": 7,
+          "physicsGroup": true,
+          "setAll": [],
+          "children": [
+            {
+              "type": "atlas-sprite",
+              "id": "ea7b9336-675c-4f5b-8d93-34a5b0f076eb",
+              "asset": "0",
+              "info": {
+                "editorName": "paddle_left",
+                "editorPublic": true,
+                "anchor.x": 0.5,
+                "anchor.y": 0.5
+              }
+            },
+            {
+              "type": "atlas-sprite",
+              "id": "c32f02d9-80c6-4586-ae53-58e3a744f0dc",
+              "asset": "1",
+              "info": {
+                "editorName": "paddle_middle",
+                "editorPublic": true,
+                "x": 27,
+                "scale.x": 2,
+                "anchor.x": 0.5,
+                "anchor.y": 0.5
+              }
+            },
+            {
+              "type": "atlas-sprite",
+              "id": "94b486b6-cda7-40e6-81f3-5cc92a8d5568",
+              "asset": "2",
+              "info": {
+                "editorName": "paddle_right",
+                "editorPublic": true,
+                "x": 54,
+                "anchor.x": 0.5,
+                "anchor.y": 0.5
+              }
+            }
+          ]
+        }
+      }]
+    }
+  },
+  "type": "GROUP",
+  "asset-table": {
+    "0": {
+      "file": "WebContent/assets/pack.json",
+      "section": "preloader",
+      "asset": "paddle",
+      "sprite": "paddle1.png"
+    },
+    "1": {
+      "file": "WebContent/assets/pack.json",
+      "section": "preloader",
+      "asset": "paddle",
+      "sprite": "paddle2.png"
+    },
+    "2": {
+      "file": "WebContent/assets/pack.json",
+      "section": "preloader",
+      "asset": "paddle",
+      "sprite": "paddle3.png"
+    }
+  },
+  "prefab-table": {}
+}

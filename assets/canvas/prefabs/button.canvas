@@ -1,0 +1,60 @@
+{
+  "canvas-version": 2,
+  "settings": {
+    "className": "button",
+    "sceneWidth": 640,
+    "sceneHeight": 360,
+    "generateOnSave": true,
+    "enableStepping": false,
+    "lang": "JAVA_SCRIPT_6",
+    "baseClass": "Phaser.Button",
+    "backgroundColor": [
+      180,
+      180,
+      180
+    ],
+    "gridColor": [
+      200,
+      200,
+      200
+    ],
+    "showGrid": true
+  },
+  "stateSettings": {
+    "stageBackgroundColor": [
+      0,
+      0,
+      0
+    ],
+    "autoLoad": true,
+    "preloadSpriteId": "",
+    "preloadSprite_direction": 0,
+    "load.pack": []
+  },
+  "world": {
+    "type": "group",
+    "id": "3fb2882e-d51f-4ca9-9b42-3ffb5596b810",
+    "info": {
+      "editorName": "button",
+      "setAll": [],
+      "children": [{
+        "type": "button",
+        "id": "4503c2f6-c103-43d7-840b-c1ee27f1aa5c",
+        "asset": "0",
+        "info": {
+          "editorName": "coins",
+          "overFrame": "0",
+          "downFrame": "5"
+        }
+      }]
+    }
+  },
+  "type": "SPRITE",
+  "asset-table": {"0": {
+    "file": "WebContent/assets/pack.json",
+    "section": "preloader",
+    "asset": "coins",
+    "sprite": "1"
+  }},
+  "prefab-table": {}
+}

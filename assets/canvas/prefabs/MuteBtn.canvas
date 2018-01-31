@@ -1,0 +1,73 @@
+{
+  "canvas-version": 2,
+  "settings": {
+    "className": "MuteBtn",
+    "sceneWidth": 640,
+    "sceneHeight": 360,
+    "generateOnSave": true,
+    "enableStepping": false,
+    "lang": "JAVA_SCRIPT_6",
+    "baseClass": "Phaser.Sprite",
+    "backgroundColor": [
+      180,
+      180,
+      180
+    ],
+    "gridColor": [
+      200,
+      200,
+      200
+    ],
+    "showGrid": true
+  },
+  "stateSettings": {
+    "stageBackgroundColor": [
+      0,
+      0,
+      0
+    ],
+    "autoLoad": true,
+    "preloadSpriteId": "",
+    "preloadSprite_direction": 0,
+    "load.pack": []
+  },
+  "world": {
+    "type": "group",
+    "id": "ea420f6b-563a-432e-8fc0-31419614fcb7",
+    "info": {
+      "editorName": "MuteBtn",
+      "setAll": [],
+      "children": [{
+        "type": "atlas-sprite",
+        "id": "26a7c838-3ab3-4384-8433-b478d3b38014",
+        "asset": "0",
+        "info": {
+          "editorName": "MuteBtn",
+          "editorPublic": true,
+          "animations": [
+            {
+              "name": "audio",
+              "frameRate": 60,
+              "public": true,
+              "frames": ["audio0.png"]
+            },
+            {
+              "name": "mute",
+              "frameRate": 60,
+              "public": true,
+              "frames": ["audio1.png"]
+            }
+          ]
+        }
+      }]
+    }
+  },
+  "type": "SPRITE",
+  "asset-table": {"0": {
+    "file": "WebContent/assets/pack.json",
+    "section": "preloader",
+    "asset": "audio",
+    "sprite": "audio0.png"
+  }},
+  "prefab-table": {}
+}

@@ -1,0 +1,161 @@
+{
+  "canvas-version": 2,
+  "settings": {
+    "className": "Menu",
+    "sceneWidth": 325,
+    "sceneHeight": 461,
+    "generateOnSave": true,
+    "enableStepping": false,
+    "lang": "JAVA_SCRIPT_6",
+    "baseClass": "Phaser.State",
+    "backgroundColor": [
+      180,
+      180,
+      180
+    ],
+    "gridColor": [
+      200,
+      200,
+      200
+    ],
+    "showGrid": true,
+    "create_after": "// user code\r\nthis.initObjects();\r\nFacade.getInstance('Game').sendNotification('GAME_SCENE_CHANGED');"
+  },
+  "stateSettings": {
+    "scaleMode": "SHOW_ALL",
+    "stageBackgroundColor": [
+      0,
+      0,
+      0
+    ],
+    "autoLoad": false,
+    "preloadSpriteId": "",
+    "preloadSprite_direction": 0,
+    "load.pack": []
+  },
+  "world": {
+    "type": "group",
+    "id": "af8eb0de-599e-428d-94f8-09d75318f8b7",
+    "info": {
+      "editorName": "Menu",
+      "setAll": [],
+      "children": [
+        {
+          "type": "image",
+          "id": "1beb8e14-4a42-4169-9dde-14c03730f72b",
+          "asset": "0",
+          "info": {
+            "editorName": "bg",
+            "x": -283,
+            "y": -96
+          }
+        },
+        {
+          "type": "prefab",
+          "prefab": "0",
+          "id": "12c1d329-220a-4431-afb2-8f5af75b6ebb",
+          "asset-ref": {
+            "file": "WebContent/assets/pack.json",
+            "section": "preloader",
+            "asset": "coins",
+            "sprite": "1"
+          },
+          "info": {
+            "editorName": "menu_dino",
+            "editorPublic": true,
+            "name": "btnDino",
+            "x": 35,
+            "y": 24
+          }
+        },
+        {
+          "type": "prefab",
+          "prefab": "0",
+          "id": "beb30890-1e53-4248-8202-67b313258176",
+          "asset-ref": {
+            "file": "WebContent/assets/pack.json",
+            "section": "preloader",
+            "asset": "coins",
+            "sprite": "1"
+          },
+          "info": {
+            "editorName": "menu_single",
+            "editorPublic": true,
+            "name": "btnSingle",
+            "x": 164,
+            "y": 164
+          }
+        },
+        {
+          "type": "prefab",
+          "prefab": "0",
+          "id": "54aa462b-27cf-4d2d-828c-70bbfe8d7a79",
+          "asset-ref": {
+            "file": "WebContent/assets/pack.json",
+            "section": "preloader",
+            "asset": "coins",
+            "sprite": "1"
+          },
+          "info": {
+            "editorName": "menu_multiple",
+            "editorPublic": true,
+            "name": "btnMultiple",
+            "x": 38,
+            "y": 307
+          }
+        },
+        {
+          "type": "text",
+          "id": "4244c8e8-3d9e-40c6-9e7c-226ce8ff8707",
+          "info": {
+            "editorName": "text_dino",
+            "x": 76,
+            "y": 75,
+            "text": "Dino"
+          }
+        },
+        {
+          "type": "text",
+          "id": "23749958-321d-444f-924c-4c76710aa17d",
+          "info": {
+            "editorName": "text_multiple",
+            "x": 65,
+            "y": 361,
+            "text": "Multiple"
+          }
+        },
+        {
+          "type": "text",
+          "id": "f47127b2-63e8-420b-a58a-b468e209d6c9",
+          "info": {
+            "editorName": "text_single",
+            "x": 195,
+            "y": 218,
+            "text": "Single"
+          }
+        },
+        {
+          "type": "prefab",
+          "prefab": "1",
+          "id": "32f6070b-85a9-402d-a2e2-541ae8279478",
+          "info": {
+            "editorName": "group",
+            "name": "btnSlot",
+            "x": 174,
+            "y": 319
+          }
+        }
+      ]
+    }
+  },
+  "type": "STATE",
+  "asset-table": {"0": {
+    "file": "WebContent/assets/pack.json",
+    "section": "preloader",
+    "asset": "bg"
+  }},
+  "prefab-table": {
+    "0": "WebContent/assets/canvas/prefabs/button.canvas",
+    "1": "WebContent/assets/canvas/prefabs/MenuItem.canvas"
+  }
+}

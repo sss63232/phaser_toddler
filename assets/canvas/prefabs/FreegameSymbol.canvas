@@ -1,0 +1,55 @@
+{
+  "canvas-version": 2,
+  "settings": {
+    "className": "FreegameSymbol",
+    "sceneWidth": 640,
+    "sceneHeight": 360,
+    "generateOnSave": true,
+    "enableStepping": false,
+    "lang": "JAVA_SCRIPT_6",
+    "baseClass": "Phaser.Sprite",
+    "backgroundColor": [
+      180,
+      180,
+      180
+    ],
+    "gridColor": [
+      200,
+      200,
+      200
+    ],
+    "showGrid": true
+  },
+  "stateSettings": {
+    "stageBackgroundColor": [
+      0,
+      0,
+      0
+    ],
+    "autoLoad": true,
+    "preloadSprite_direction": 0,
+    "load.pack": []
+  },
+  "world": {
+    "type": "group",
+    "id": "445dceb4-990b-460d-b4ec-f034abbc5e1d",
+    "info": {
+      "editorName": "FreegameSymbol",
+      "setAll": [],
+      "children": [{
+        "type": "atlas-sprite",
+        "id": "9da77501-d601-4950-837e-b37b5a33c467",
+        "asset": "0",
+        "info": {"editorName": "M1"}
+      }]
+    }
+  },
+  "type": "SPRITE",
+  "asset-table": {"0": {
+    "file": "WebContent/assets/pack.json",
+    "section": "preloader",
+    "asset": "freegameSymbol",
+    "sprite": "M1"
+  }},
+  "prefab-table": {}
+}
