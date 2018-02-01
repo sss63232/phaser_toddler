@@ -1,22 +1,56 @@
 let game = new Phaser.Game(640, 360, Phaser.AUTO);
-let imagesURL = '../assets/images/';
+let animalDataArr = [{
+		key: 'chicken',
+		text: 'CHICKEN',
+		frameWidth: 131
+	},
+	{
+		key: 'horse',
+		text: 'HORSE',
+		frameWidth: 212
+	},
+	{
+		key: 'pig',
+		text: 'PIG',
+		frameWidth: 297
+	},
+	{
+		key: 'sheep',
+		text: 'SHEEP',
+		frameWidth: 244
+	}
+];
+
 let GameState = {
 	preload: function () {
+		let imagesURL = '../assets/images/';
+		let spritesheet = "_spritesheet.png";
+		let audioURL = '../assets/audio/';
+		let frameHeight = 200;
+
+		// load spritesheets and audio
+		animalDataArr.forEach(
+			(value, index) => {
+				this.load.spritesheet(
+					value.key,
+					imagesURL + value.key + spritesheet,
+					value.frameWidth,
+					frameHeight
+				);
+				this.load.audio(
+					value.key + "Sound", [
+						audioURL + value.key + ".ogg",
+						audioURL + value.key + ".mp3"
+					]
+				)
+			},
+			this
+		);
+
 		this.load.image('background', imagesURL + 'background.png');
 		this.load.image('arrow', imagesURL + 'arrow.png');
-
-		// // single picture spritesheet
-		// this.load.image('chicken', imagesURL + 'chicken.png');
-		// this.load.image('horse', imagesURL + 'horse.png');
-		// this.load.image('pig', imagesURL + 'pig.png');
-
-		// animation spritesheet
-		let spritesheet = "_spritesheet.png";
-		this.load.spritesheet("chicken", imagesURL + "chicken" + spritesheet, 131, 200, 3);
-		this.load.spritesheet("horse", imagesURL + "horse" + spritesheet, 212, 200, 3);
-		this.load.spritesheet("pig", imagesURL + "pig" + spritesheet, 297, 200, 3);
-		this.load.spritesheet("sheep", imagesURL + "sheep" + spritesheet, 244, 200, 3);
 	},
+
 	create: function () {
 		this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 		this.scale.pageAlignHorizontally = true;
@@ -24,49 +58,38 @@ let GameState = {
 
 		this.background = this.game.add.sprite(0, 0, 'background');
 
-		let animalData = [{
-				key: 'chicken',
-				text: 'CHICKEN'
-			},
-			{
-				key: 'horse',
-				text: 'HORSE'
-			},
-			{
-				key: 'pig',
-				text: 'PIG'
-			}
-		];
-
-		this.animals = this.game.add.group();
-		animalData.forEach(
-			function (element) {
-				let animal = this.animals.create(-200, this.game.world.centerY, element.key, 0);
-				animal.customParams = {
-					text: element.text
+		this.animalsGroup = this.game.add.group();
+		let animalSprite;
+		animalDataArr.forEach(
+			(value, index) => {
+				// 最後一個參數指定 spritesheet 的 frame
+				animalSprite = this.animalsGroup.create(-1000,
+					this.game.world.centerY,
+					value.key,
+					0
+				);
+				animalSprite.customParams = {
+					text: value.text,
+					PhaserSound: this.game.add.audio(
+						value.key + "Sound"
+					)
 				};
-				animal.anchor.setTo(0.5);
-				animal.animations.add('animate', [0, 1, 2, 1, 0, 1], 3, false);
-				animal.inputEnabled = true;
-				animal.input.pixelPerfectClick = true;
-				animal.events.onInputDown.add(this.animateAnimal, this);
+				animalSprite.anchor.setTo(0.5);
+				animalSprite.animations.add('animate', [0, 1, 2, 1, 0, 1], 3, false);
+				animalSprite.inputEnabled = true;
+				animalSprite.input.pixelPerfectClick = true;
+				animalSprite.events.onInputDown.add(this.animateAnimal, this);
 			},
 			this
 		);
 
-		this.currentAnimal = this.animals.next();
-		this.currentAnimal.position.set(
+		this.currentAnimalSprite = this.animalsGroup.next();
+		this.currentAnimalSprite.position.set(
 			this.game.world.centerX,
 			this.game.world.centerY
 		);
 
-		// // chicken 置中
-		// this.chicken = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'chicken');
-		// this.chicken.anchor.setTo(0.5);
-
-		// this.chicken.inputEnabled = true;
-		// this.chicken.input.pixelPerfectClick = true;
-		// this.chicken.events.onInputDown.add(this.animateAnimal, this);
+		this.showCurrentAnimalText(this.currentAnimalSprite);
 
 		// left arrow
 		this.leftArrow = this.game.add.sprite(60, this.game.world.centerY, 'arrow');
@@ -96,6 +119,7 @@ let GameState = {
 
 	animateAnimal: function (sprite, event) {
 		sprite.play('animate');
+		sprite.customParams.PhaserSound.play();
 	},
 
 	switchAnimal: function (sprite, event) {
@@ -106,13 +130,14 @@ let GameState = {
 		if (this.isMoving) return;
 
 		this.isMoving = true;
+		this.animalText.visible = false;
 		if (direction > 0) {
-			endX_for_currentAnimal = this.game.world.width + this.currentAnimal.width / 2;
-			newAnimal = this.animals.next();
+			endX_for_currentAnimal = this.game.world.width + this.currentAnimalSprite.width / 2;
+			newAnimal = this.animalsGroup.next();
 			newAnimal.x = -newAnimal.width / 2;
 		} else {
-			endX_for_currentAnimal = -this.currentAnimal.width / 2;
-			newAnimal = this.animals.previous();
+			endX_for_currentAnimal = -this.currentAnimalSprite.width / 2;
+			newAnimal = this.animalsGroup.previous();
 			newAnimal.x = this.game.world.width + newAnimal.width / 2;
 		}
 
@@ -122,18 +147,38 @@ let GameState = {
 		}, 500);
 		newAnimalMovement.start();
 
-		let currentAnimalMovement = this.game.add.tween(this.currentAnimal);
+		let currentAnimalMovement = this.game.add.tween(this.currentAnimalSprite);
 		currentAnimalMovement.to({
 			x: endX_for_currentAnimal
 		}, 500);
 		currentAnimalMovement.onComplete.add(
 			function () {
 				this.isMoving = false;
+				this.showCurrentAnimalText(this.currentAnimalSprite);
 			}, this
 		);
 		currentAnimalMovement.start();
 
-		this.currentAnimal = newAnimal;
+		this.currentAnimalSprite = newAnimal;
+	},
+
+	showCurrentAnimalText(animalSprite) {
+		if (!this.animalText) {
+			let textStyle = {
+				font: 'bold 30pt Arial',
+				fill: '#D0171B',
+				align: 'center'
+			}
+			this.animalText = this.game.add.text(
+				this.game.world.centerX,
+				this.game.world.height * 0.85,
+				"",
+				textStyle
+			);
+			this.animalText.anchor.setTo(0.5);
+		}
+		this.animalText.visible = true;
+		this.animalText.setText(animalSprite.customParams.text);
 	},
 
 	update: function () {
