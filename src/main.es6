@@ -1,29 +1,20 @@
 import UnsplashHandler from './UnsplashHandler';
 
+let unsplashImageURL;
 let game = new Phaser.Game(640, 360, Phaser.AUTO);
 let imagesURL = '../assets/images/';
 let GameState = {
-    preload: function() {
-        let unsplash = new UnsplashHandler;
-        let unsplashImageURL = unsplash.getRandomPhoto();
-
+    preload: function () {
+        this.load.crossOrigin = 'anonymous';
         this.load.image('background', imagesURL + 'background.png');
         this.load.image('arrow', imagesURL + 'arrow.png');
         this.load.image('unsplash', unsplashImageURL + ".jpg");
 
-        // // single picture spritesheet
-        // this.load.image('chicken', imagesURL + 'chicken.png');
-        // this.load.image('horse', imagesURL + 'horse.png');
-        // this.load.image('pig', imagesURL + 'pig.png');
-
         // animation spritesheet
-        let spritesheet = "_spritesheet.png";
-        this.load.spritesheet("chicken", imagesURL + "chicken" + spritesheet, 131, 200, 3);
-        this.load.spritesheet("horse", imagesURL + "horse" + spritesheet, 212, 200, 3);
-        this.load.spritesheet("pig", imagesURL + "pig" + spritesheet, 297, 200, 3);
-        this.load.spritesheet("sheep", imagesURL + "sheep" + spritesheet, 244, 200, 3);
+        // let spritesheet = "_spritesheet.png";
+        // this.load.spritesheet("chicken", imagesURL + "chicken" + spritesheet, 131, 200, 3);
     },
-    create: function() {
+    create: function () {
         this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         this.scale.pageAlignHorizontally = true;
         this.scale.pageAlignVertically = true;
@@ -46,7 +37,7 @@ let GameState = {
 
         this.animals = this.game.add.group();
         animalData.forEach(
-            function(element) {
+            function (element) {
                 let animal = this.animals.create(-200, this.game.world.centerY, element.key, 0);
                 animal.customParams = {
                     text: element.text
@@ -66,13 +57,6 @@ let GameState = {
             this.game.world.centerY
         );
 
-        // // chicken 置中
-        // this.chicken = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'chicken');
-        // this.chicken.anchor.setTo(0.5);
-
-        // this.chicken.inputEnabled = true;
-        // this.chicken.input.pixelPerfectClick = true;
-        // this.chicken.events.onInputDown.add(this.animateAnimal, this);
 
         // left arrow
         this.leftArrow = this.game.add.sprite(60, this.game.world.centerY, 'arrow');
@@ -97,14 +81,13 @@ let GameState = {
         this.rightArrow.inputEnabled = true;
         this.rightArrow.input.pixelPerfectClick = true;
         this.rightArrow.events.onInputDown.add(this.switchAnimal, this);
-
     },
 
-    animateAnimal: function(sprite, event) {
+    animateAnimal: function (sprite, event) {
         sprite.play('animate');
     },
 
-    switchAnimal: function(sprite, event) {
+    switchAnimal: function (sprite, event) {
         let direction = sprite.customParams.direction;
         let newAnimal;
         let endX_for_currentAnimal;
@@ -133,7 +116,7 @@ let GameState = {
             x: endX_for_currentAnimal
         }, 500);
         currentAnimalMovement.onComplete.add(
-            function() {
+            function () {
                 this.isMoving = false;
             }, this
         );
@@ -142,11 +125,23 @@ let GameState = {
         this.currentAnimal = newAnimal;
     },
 
-    update: function() {
+    update: function () {
         // // 旋轉 chicken
         // this.chicken.angle += 5;
     }
 };
 
-game.state.add('GameState', GameState);
-game.state.start('GameState');
+let unsplash = new UnsplashHandler;
+unsplash.getRandomPhoto()
+    .then(fetchedURL => {
+        unsplashImageURL = fetchedURL;
+        (function (gameStateObj) {
+            game.state.add('GameState', gameStateObj);
+            game.state.start('GameState');
+        })(GameState);
+    })
+    .catch((reason) => {
+        console.log('------------------------------------');
+        console.log(`error, reason ${reason}`);
+        console.log('------------------------------------');
+    });

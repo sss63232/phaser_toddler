@@ -1,4 +1,6 @@
-import Unsplash, { toJson } from "unsplash-js";
+import Unsplash, {
+    toJson
+} from "unsplash-js";
 
 export default class UnsplashHandler {
 
@@ -36,25 +38,12 @@ export default class UnsplashHandler {
     // }
 
     getRandomPhoto() {
-        //     var url = this.location + "/photos/random" + this.urlId;
-        //     var xhr = new XMLHttpRequest();
-        //     xhr.onload = function() {
-        //         let res = JSON.parse(this.response);
-        //         return res.urls.small;
-        //     }
-        //     xhr.open("GET", url, true);
-        //     xhr.send();
-        // }
-
-        var sleep = function(para) {
-            return new Promise(function(resolve, reject) {
-                setTimeout(function() {
-                    resolve(para * para)
-                }, 1000)
+        return new Promise(
+            (res, rej) => {
+                this.unsplashInstance.photos.getRandomPhoto()
+                    .then(toJson)
+                    .then(json => res(json.urls.small))
+                    .catch(reason => rej(reason));
             })
-        }
-        var result = await sleep(2)
     }
-
-
 }
