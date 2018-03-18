@@ -3,7 +3,6 @@ dist/
 temp/
 *.sublime-project
 *.sublime-workspace
-index.html
 .vscode
 .settings/
 .idea/
