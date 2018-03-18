@@ -1,0 +1,35 @@
+{
+  "resources": [
+    "audiosprite.ogg",
+    "audiosprite.m4a",
+    "audiosprite.mp3",
+    "audiosprite.ac3"
+  ],
+  "spritemap": {
+    "bitcoin-cash": {
+      "start": 0,
+      "end": 1.56,
+      "loop": false
+    },
+    "bitcoin": {
+      "start": 3,
+      "end": 3.5856009070294785,
+      "loop": false
+    },
+    "ethereum": {
+      "start": 5,
+      "end": 8.082448979591836,
+      "loop": false
+    },
+    "litecoin": {
+      "start": 10,
+      "end": 11.28,
+      "loop": false
+    },
+    "ripple": {
+      "start": 13,
+      "end": 13.484353741496598,
+      "loop": false
+    }
+  }
+}

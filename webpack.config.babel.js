@@ -17,13 +17,10 @@ module.exports = {
         vendor: [
             'pixi',
             'p2',
-            'phaser',
-            './js/3rdparty/swfobject.js',
-            './js/3rdparty/web_socket.js',
-            // './js/Photon-Javascript_SDK.min.js'
+            'phaser'
         ]
     },
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'source-map',
     output: {
         pathinfo: true,
         path: path.resolve(__dirname, 'dist'),
@@ -58,8 +55,9 @@ module.exports = {
         new BrowserSyncPlugin({
             host: process.env.IP || 'localhost',
             port: process.env.PORT || 3000,
+            browser: "chrome",
             server: {
-                baseDir: ['./', './dist']
+                baseDir: "./",
             }
         }),
     ],

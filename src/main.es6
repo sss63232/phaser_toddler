@@ -1,191 +1,247 @@
-let game = new Phaser.Game(640, 360, Phaser.AUTO);
-let animalDataArr = [{
-		key: 'chicken',
-		text: 'CHICKEN',
-		frameWidth: 131
-	},
-	{
-		key: 'horse',
-		text: 'HORSE',
-		frameWidth: 212
-	},
-	{
-		key: 'pig',
-		text: 'PIG',
-		frameWidth: 297
-	},
-	{
-		key: 'sheep',
-		text: 'SHEEP',
-		frameWidth: 244
-	}
+import UnsplashHandler from './UnsplashHandler';
+import CoinHandler from './CoinHandler';
+
+
+let game = new Phaser.Game(800, 600, Phaser.AUTO);
+let imagesURL = '../assets/images/';
+let coinsTypeArr = [{
+        id: 'bitcoin',
+        name: 'Bitcoin',
+        symbol: 'BTC'
+    },
+    {
+        id: 'ethereum',
+        name: 'Ethereum',
+        symbol: 'ETH'
+    }, {
+        id: 'ripple',
+        name: 'Ripple',
+        symbol: 'XRP'
+    },
+    {
+        id: 'bitcoin-cash',
+        name: 'Bitcoin Cash',
+        symbol: 'BCH'
+    },
+    {
+        id: 'litecoin',
+        name: 'Litecoin',
+        symbol: 'LTC'
+    }
 ];
-
 let GameState = {
-	preload: function () {
-		let imagesURL = '../assets/images/';
-		let spritesheet = "_spritesheet.png";
-		let audioURL = '../assets/audio/';
-		let frameHeight = 200;
+    preload: function () {
+        // load images
+        this.load.crossOrigin = 'anonymous';
+        this.load.image('arrow', imagesURL + 'arrow.png');
+        this.load.image('unsplash', `${UnsplashHandler.getRandomPhotoUrlBySize("regular")}.jpg`);
+        coinsTypeArr.forEach(oneCoin => {
+            let id = oneCoin.id;
+            this.load.image(
+                id,
+                `${imagesURL}${id}.png`
+            );
+        });
 
-		// load spritesheets and audio
-		animalDataArr.forEach(
-			(value, index) => {
-				this.load.spritesheet(
-					value.key,
-					imagesURL + value.key + spritesheet,
-					value.frameWidth,
-					frameHeight
-				);
-				this.load.audio(
-					value.key + "Sound", [
-						audioURL + value.key + ".ogg",
-						audioURL + value.key + ".mp3"
-					]
-				)
-			},
-			this
-		);
+        // load audiosprite
+        let audiospriteJSON = {
+            "resources": [
+                "audiosprite.ogg",
+                "audiosprite.m4a",
+                "audiosprite.mp3",
+                "audiosprite.ac3"
+            ],
+            "spritemap": {
+                "bitcoin-cash": {
+                    "start": 0,
+                    "end": 1.56,
+                    "loop": false
+                },
+                "bitcoin": {
+                    "start": 3,
+                    "end": 3.5856009070294785,
+                    "loop": false
+                },
+                "ethereum": {
+                    "start": 5,
+                    "end": 8.082448979591836,
+                    "loop": false
+                },
+                "litecoin": {
+                    "start": 10,
+                    "end": 11.28,
+                    "loop": false
+                },
+                "ripple": {
+                    "start": 13,
+                    "end": 13.484353741496598,
+                    "loop": false
+                }
+            }
+        };
+        this.load.audioSprite(
+            'sound',
+            '../assets/audio/audiosprite.ogg',
+            null,
+            audiospriteJSON
+        );
+    },
+    create: function () {
+        this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        this.scale.pageAlignHorizontally = true;
+        this.scale.pageAlignVertically = true;
+        // this.stage.backgroundColor = "#0c9fc7";
+        this.background = this.game.add.sprite(0, 0, 'unsplash');
+        this.background.alpha = 0.2;
 
-		this.load.image('background', imagesURL + 'background.png');
-		this.load.image('arrow', imagesURL + 'arrow.png');
-	},
+        this.Phaser_AudioSprite_sound = this.game.add.audioSprite('sound');
+        this.Phaser_AudioSprite_sound.allowMultiple = true;
 
-	create: function () {
-		this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-		this.scale.pageAlignHorizontally = true;
-		this.scale.pageAlignVertically = true;
+        // add two text into one group for showing exchanger rate
+        this.textGroup = this.game.add.group();
+        let textStyle = {
+            fill: "#ffffff",
+            align: "center"
+        };
+        this.coinNameText = this.game.add.text(
+            this.game.world.centerX,
+            this.game.world.centerY,
+            `Bitcoin`,
+            textStyle,
+            this.exchangeRatesText);
+        this.coinNameText.anchor.setTo(0.5);
+        this.changeRateText_usd = this.game.add.text(
+            this.game.world.centerX,
+            this.game.world.centerY + 50,
+            `1 BTC => ${CoinHandler.getRate("bitcoin", "usd")}`,
+            textStyle,
+            this.exchangeRatesText);
+        this.changeRateText_usd.anchor.setTo(0.5);
+        this.changeRateText_twd = this.game.add.text(
+            this.game.world.centerX,
+            this.game.world.centerY + 100,
+            `1 BTC => ${CoinHandler.getRate("bitcoin", "twd")}`,
+            textStyle,
+            this.exchangeRatesText);
+        this.changeRateText_twd.anchor.setTo(0.5);
 
-		this.background = this.game.add.sprite(0, 0, 'background');
+        // add the images of each coin
+        this.coins = this.game.add.group();
+        for (let i = 0, length = coinsTypeArr.length; i < length; i++) {
+            let coin = this.coins.create(
+                10000,
+                this.game.world.centerY - 100,
+                coinsTypeArr[i].id,
+                0
+            );
+            coin.customParams = {
+                id: coinsTypeArr[i].id,
+                name: coinsTypeArr[i].name,
+                symbol: coinsTypeArr[i].symbol
+            };
+            coin.anchor.setTo(0.5);
+            coin.inputEnabled = true;
+            coin.events.onInputDown.add(this.pronounceCoinName, this);
+        }
 
-		this.animalsGroup = this.game.add.group();
-		let animalSprite;
-		animalDataArr.forEach(
-			(value, index) => {
-				// 最後一個參數指定 spritesheet 的 frame
-				animalSprite = this.animalsGroup.create(-1000,
-					this.game.world.centerY,
-					value.key,
-					0
-				);
-				animalSprite.customParams = {
-					text: value.text,
-					PhaserSound: this.game.add.audio(
-						value.key + "Sound"
-					)
-				};
-				animalSprite.anchor.setTo(0.5);
-				animalSprite.animations.add('animate', [0, 1, 2, 1, 0, 1], 3, false);
-				animalSprite.inputEnabled = true;
-				animalSprite.input.pixelPerfectClick = true;
-				animalSprite.events.onInputDown.add(this.animateAnimal, this);
-			},
-			this
-		);
-
-		this.currentAnimalSprite = this.animalsGroup.next();
-		this.currentAnimalSprite.position.set(
-			this.game.world.centerX,
-			this.game.world.centerY
-		);
-
-		this.showCurrentAnimalText(this.currentAnimalSprite);
-
-		// left arrow
-		this.leftArrow = this.game.add.sprite(60, this.game.world.centerY, 'arrow');
-		this.leftArrow.anchor.setTo(0.5);
-		this.leftArrow.scale.x = -1;
-		this.leftArrow.customParams = {
-			direction: -1
-		};
-
-		this.leftArrow.inputEnabled = true;
-		this.leftArrow.input.pixelPerfectClick = true;
-		this.leftArrow.events.onInputDown.add(this.switchAnimal, this);
+        // take bitcoin to be the first one
+        this.currentCoin = this.coins.getBottom();
+        this.currentCoin.position.set(
+            this.game.world.centerX,
+            this.game.world.centerY - 100
+        );
 
 
-		// right arrow
-		this.rightArrow = this.game.add.sprite(580, this.game.world.centerY, 'arrow');
-		this.rightArrow.anchor.setTo(0.5);
-		this.rightArrow.customParams = {
-			direction: 1
-		};
+        // left arrow
+        this.leftArrow = this.game.add.sprite(
+            this.game.world.x + 100,
+            this.game.world.centerY,
+            'arrow');
+        this.leftArrow.anchor.setTo(0.5);
+        this.leftArrow.scale.x = -1;
+        this.leftArrow.customParams = {
+            direction: -1
+        };
 
-		this.rightArrow.inputEnabled = true;
-		this.rightArrow.input.pixelPerfectClick = true;
-		this.rightArrow.events.onInputDown.add(this.switchAnimal, this);
+        this.leftArrow.inputEnabled = true;
+        this.leftArrow.events.onInputDown.add(this.switchCoin, this);
 
-	},
 
-	animateAnimal: function (sprite, event) {
-		sprite.play('animate');
-		sprite.customParams.PhaserSound.play();
-	},
+        // right arrow
+        this.rightArrow = this.game.add.sprite(
+            this.world.x + 700,
+            this.game.world.centerY,
+            'arrow');
+        this.rightArrow.anchor.setTo(0.5);
+        this.rightArrow.customParams = {
+            direction: 1
+        };
 
-	switchAnimal: function (sprite, event) {
-		let direction = sprite.customParams.direction;
-		let newAnimal;
-		let endX_for_currentAnimal;
+        this.rightArrow.inputEnabled = true;
+        this.rightArrow.events.onInputDown.add(this.switchCoin, this);
+    },
 
-		if (this.isMoving) return;
+    pronounceCoinName: function (sprite, event) {
+        this.Phaser_AudioSprite_sound.play(this.currentCoin.customParams.id);
+    },
 
-		this.isMoving = true;
-		this.animalText.visible = false;
-		if (direction > 0) {
-			endX_for_currentAnimal = this.game.world.width + this.currentAnimalSprite.width / 2;
-			newAnimal = this.animalsGroup.next();
-			newAnimal.x = -newAnimal.width / 2;
-		} else {
-			endX_for_currentAnimal = -this.currentAnimalSprite.width / 2;
-			newAnimal = this.animalsGroup.previous();
-			newAnimal.x = this.game.world.width + newAnimal.width / 2;
-		}
+    switchCoin: function (sprite, event) {
+        let direction = sprite.customParams.direction;
+        let newCoin;
+        let endX_for_currentCoin;
 
-		let newAnimalMovement = this.game.add.tween(newAnimal);
-		newAnimalMovement.to({
-			x: this.game.world.centerX
-		}, 500);
-		newAnimalMovement.start();
+        if (this.isMoving) return;
 
-		let currentAnimalMovement = this.game.add.tween(this.currentAnimalSprite);
-		currentAnimalMovement.to({
-			x: endX_for_currentAnimal
-		}, 500);
-		currentAnimalMovement.onComplete.add(
-			function () {
-				this.isMoving = false;
-				this.showCurrentAnimalText(this.currentAnimalSprite);
-			}, this
-		);
-		currentAnimalMovement.start();
+        this.isMoving = true;
+        if (direction > 0) {
+            endX_for_currentCoin = this.game.world.width + this.currentCoin.width / 2;
+            newCoin = this.coins.next();
+            newCoin.x = -newCoin.width / 2;
+        } else {
+            endX_for_currentCoin = -this.currentCoin.width / 2;
+            newCoin = this.coins.previous();
+            newCoin.x = this.game.world.width + newCoin.width / 2;
+        }
 
-		this.currentAnimalSprite = newAnimal;
-	},
+        let newCoinMovement = this.game.add.tween(newCoin);
+        newCoinMovement.to({
+            x: this.game.world.centerX
+        }, 500);
+        newCoinMovement.start();
 
-	showCurrentAnimalText(animalSprite) {
-		if (!this.animalText) {
-			let textStyle = {
-				font: 'bold 30pt Arial',
-				fill: '#D0171B',
-				align: 'center'
-			}
-			this.animalText = this.game.add.text(
-				this.game.world.centerX,
-				this.game.world.height * 0.85,
-				"",
-				textStyle
-			);
-			this.animalText.anchor.setTo(0.5);
-		}
-		this.animalText.visible = true;
-		this.animalText.setText(animalSprite.customParams.text);
-	},
+        let currentCoinMovement = this.game.add.tween(this.currentCoin);
+        currentCoinMovement.to({
+            x: endX_for_currentCoin
+        }, 500);
+        currentCoinMovement.onComplete.add(
+            function () {
+                this.isMoving = false;
+            }, this
+        );
+        currentCoinMovement.start();
 
-	update: function () {
-		// // 旋轉 chicken
-		// this.chicken.angle += 5;
-	}
+        this.currentCoin = newCoin;
+        this.coinNameText.setText(
+            `${this.currentCoin.customParams.name}`
+        );
+        this.changeRateText_usd.setText(
+            `1 ${this.currentCoin.customParams.symbol} => ${CoinHandler.getRate(this.currentCoin.customParams.id, "usd")} usd`
+        );
+        this.changeRateText_twd.setText(
+            `1 ${this.currentCoin.customParams.symbol} => ${CoinHandler.getRate(this.currentCoin.customParams.id, "twd")} twd`
+        );
+    },
+
+    update: function () {}
 };
 
-game.state.add('GameState', GameState);
-game.state.start('GameState');
+
+Promise.all([
+    CoinHandler.getExchangeRates(),
+    UnsplashHandler.getRandomPhoto()
+]).then(
+    _ => {
+        // start phaser game
+        game.state.add('GameState', GameState);
+        game.state.start('GameState');
+    });
