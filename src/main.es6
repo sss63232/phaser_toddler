@@ -1,7 +1,6 @@
 import UnsplashHandler from './UnsplashHandler';
-import CoinAPI from './CoinAPI';
+import CoinHandler from './CoinHandler';
 
-let unsplashImageURL;
 
 let game = new Phaser.Game(800, 600, Phaser.AUTO);
 let imagesURL = '../assets/images/';
@@ -34,15 +33,15 @@ let GameState = {
     preload: function () {
         // load images
         this.load.crossOrigin = 'anonymous';
-        this.load.image('arrow', imagesURL + 'arrow_circle.png');
-        this.load.image('unsplash', unsplashImageURL + ".jpg");
-        for (let i = 0, length = coinsTypeArr.length; i < length; i++) {
-            let id = coinsTypeArr[i].id;
+        this.load.image('arrow', imagesURL + 'arrow.png');
+        this.load.image('unsplash', `${UnsplashHandler.getRandomPhotoUrlBySize("regular")}.jpg`);
+        coinsTypeArr.forEach(oneCoin => {
+            let id = oneCoin.id;
             this.load.image(
                 id,
                 `${imagesURL}${id}.png`
             );
-        }
+        });
 
         // load audiosprite
         let audiospriteJSON = {
@@ -91,24 +90,38 @@ let GameState = {
         this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         this.scale.pageAlignHorizontally = true;
         this.scale.pageAlignVertically = true;
-        this.stage.backgroundColor = "#0c9fc7";
-        // this.background = this.game.add.sprite(0, 0, 'unsplash');
+        // this.stage.backgroundColor = "#0c9fc7";
+        this.background = this.game.add.sprite(0, 0, 'unsplash');
+        this.background.alpha = 0.2;
 
         this.Phaser_AudioSprite_sound = this.game.add.audioSprite('sound');
         this.Phaser_AudioSprite_sound.allowMultiple = true;
 
         // add two text into one group for showing exchanger rate
-        this.exchangeRatesText = this.game.add.group();
+        this.textGroup = this.game.add.group();
+        let textStyle = {
+            fill: "#ffffff",
+            align: "center"
+        };
+        this.coinNameText = this.game.add.text(
+            this.game.world.centerX,
+            this.game.world.centerY,
+            `Bitcoin`,
+            textStyle,
+            this.exchangeRatesText);
+        this.coinNameText.anchor.setTo(0.5);
         this.changeRateText_usd = this.game.add.text(
             this.game.world.centerX,
             this.game.world.centerY + 50,
-            `1 BTC => ${CoinAPI.getRate("bitcoin", "usd")}`, {},
+            `1 BTC => ${CoinHandler.getRate("bitcoin", "usd")}`,
+            textStyle,
             this.exchangeRatesText);
         this.changeRateText_usd.anchor.setTo(0.5);
         this.changeRateText_twd = this.game.add.text(
             this.game.world.centerX,
             this.game.world.centerY + 100,
-            `1 BTC => ${CoinAPI.getRate("bitcoin", "twd")}`, {},
+            `1 BTC => ${CoinHandler.getRate("bitcoin", "twd")}`,
+            textStyle,
             this.exchangeRatesText);
         this.changeRateText_twd.anchor.setTo(0.5);
 
@@ -208,11 +221,14 @@ let GameState = {
         currentCoinMovement.start();
 
         this.currentCoin = newCoin;
+        this.coinNameText.setText(
+            `${this.currentCoin.customParams.name}`
+        );
         this.changeRateText_usd.setText(
-            `1 ${this.currentCoin.customParams.symbol} => ${CoinAPI.getRate(this.currentCoin.customParams.id, "usd")} usd`
+            `1 ${this.currentCoin.customParams.symbol} => ${CoinHandler.getRate(this.currentCoin.customParams.id, "usd")} usd`
         );
         this.changeRateText_twd.setText(
-            `1 ${this.currentCoin.customParams.symbol} => ${CoinAPI.getRate(this.currentCoin.customParams.id, "twd")} twd`
+            `1 ${this.currentCoin.customParams.symbol} => ${CoinHandler.getRate(this.currentCoin.customParams.id, "twd")} twd`
         );
     },
 
@@ -220,22 +236,12 @@ let GameState = {
 };
 
 
-let startPhaser = () => {
-    game.state.add('GameState', GameState);
-    game.state.start('GameState');
-};
-
-CoinAPI.getExchangeRates();
-startPhaser();
-
-
-let unsplash = new UnsplashHandler;
-unsplash.getRandomPhoto()
-    .then(fetchedURL => {
-        unsplashImageURL = fetchedURL;
-    })
-    .catch((reason) => {
-        console.log('------------------------------------');
-        console.log(`error, reason ${reason}`);
-        console.log('------------------------------------');
+Promise.all([
+    CoinHandler.getExchangeRates(),
+    UnsplashHandler.getRandomPhoto()
+]).then(
+    _ => {
+        // start phaser game
+        game.state.add('GameState', GameState);
+        game.state.start('GameState');
     });

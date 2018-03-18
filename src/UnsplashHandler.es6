@@ -4,46 +4,37 @@ import Unsplash, {
 
 export default class UnsplashHandler {
 
+    constructor() {}
 
-    constructor() {
-        this.location = "https://api.unsplash.com";
-        this.urlId = "?client_id=de67f1ba6f631670eedefff4c31bc09c840310d39a12d6785c1eb0f06fb7146f";
+    static unsplashInstance;
+    static randomPhotos;
 
-        this.id = "de67f1ba6f631670eedefff4c31bc09c840310d39a12d6785c1eb0f06fb7146f";
-        this.secret = "6e563cd7a8569dca86a605c7266e668d12c820a4568ca9eea254ff379df3004b";
-        this.callbackURLs = "urn:ietf:wg:oauth:2.0:oob";
-        this.unsplashInstance;
-
-        this.createInstance();
-    }
-
-    createInstance() {
+    static createInstance() {
         this.unsplashInstance = new Unsplash({
-            applicationId: this.id,
-            secret: this.secret,
-            callbackURL: this.callbackURLs
+            applicationId: "de67f1ba6f631670eedefff4c31bc09c840310d39a12d6785c1eb0f06fb7146f",
+            secret: "6e563cd7a8569dca86a605c7266e668d12c820a4568ca9eea254ff379df3004b",
+            callbackURL: "urn:ietf:wg:oauth:2.0:oob"
         });
     }
 
-    // authorize() {
-    //     const authenticationUrl = this.unsplashInstance.auth.getAuthenticationUrl([
-    //         "public",
-    //         "read_user",
-    //         "write_user",
-    //         "read_photos",
-    //         "write_photos"
-    //     ]);
+    static getRandomPhoto() {
+        if (!this.unsplashInstance) {
+            this.createInstance();
+        }
 
-    //     location.assign(authenticationUrl);
-    // }
-
-    getRandomPhoto() {
         return new Promise(
             (res, rej) => {
                 this.unsplashInstance.photos.getRandomPhoto()
                     .then(toJson)
-                    .then(json => res(json.urls.small))
+                    .then(json => {
+                        this.randomPhotos = json;
+                        res();
+                    })
                     .catch(reason => rej(reason));
             })
+    }
+
+    static getRandomPhotoUrlBySize(size) {
+        return this.randomPhotos.urls[size];
     }
 }
